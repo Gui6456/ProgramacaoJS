@@ -93,9 +93,13 @@ console.log("São "+horas+ "h disponíveis, "+minutos+ "m e " +segundos+ "s \n")
 
 let variavel_x = "x"
 let variavel_y = "y"
-variavel_y = variavel_x
+let variavel_y_original = variavel_x
+
+variavel_x = variavel_y
+variavel_y = variavel_y_original
 
 console.log("Existem dois valores, "+variavel_x+ " e "+variavel_y+ "\n")
+
 
 // -- Atividade 12
 
@@ -107,4 +111,3 @@ let calculo_combustivel = qnt_litros * preco_combustivel
 
 console.log("A distância percorrida foi de "+distancia+ "km, foi usado "+qnt_litros+
     "L, o carro consumiu "+calculo_distancia+ "L na viagem e o valor total gasto de combustível foi de R$"+ calculo_combustivel+ " reais" )
-
