@@ -17,14 +17,14 @@ item3 = parseFloat(prompt("Digite o preço do " + item3 + ": R$"))
 item4 = parseFloat(prompt("Digite o preço do " + item4 + ": R$"))
 item5 = parseFloat(prompt("Digite o preço do " + item5 + ": R$"))
 
-let porcentagem_digitada = parseInt(prompt("Digite a porcentagem de lucro desejado: "));
-let lucro_desejado = porcentagem_digitada / 100;
+let porcentagem_usuario = parseInt(prompt("Digite a porcentagem de lucro desejado: "));
+let lucro_desejado = porcentagem_usuario / 100;
 
 console.log("==============================================")
 console.log("    Cardápio de ---- Conraditoz Doguis'itos   ")
 console.log("==============================================") 
 
-console.log("O lucro aplicado será de: " + porcentagem_digitada + "%\n");
+console.log("O lucro aplicado será de: " + porcentagem_usuario + "%\n");
 
 let custo_pure = item1 + item3 + item5 + item2;
 let lucro_pure = custo_pure * lucro_desejado;
@@ -62,7 +62,7 @@ console.log("Ingredientes: pão, purê de batata, bacon, salsicha");
 console.log("Preço de custo será de: R$ " + custo_combo)
 console.log("Preço de venda será de: R$ " + venda_combo+ "\n")
 
-console.log("A porcentagem utilizada para obter lucro foi de: " +porcentagem_digitada + "%")
+console.log("A porcentagem utilizada para obter lucro foi de: " +porcentagem_usuario + "%")
 
 
 
