@@ -18,7 +18,6 @@ item4 = parseFloat(prompt("Digite o preço do " + item4 + ": R$"))
 item5 = parseFloat(prompt("Digite o preço do " + item5 + ": R$"))
 
 let porcentagem_digitada = parseInt(prompt("Digite a porcentagem de lucro desejado: "));
-
 let lucro_desejado = porcentagem_digitada / 100;
 
 console.log("==============================================")
@@ -46,5 +45,33 @@ let venda_combo = custo_combo + lucro_combo;
 console.log("CACHORRO QUENTE COM PURÊ");
 console.log("Ingredientes: pão, purê de batata, bacon, salsicha");
 console.log("Preço de custo será de: R$ " + custo_pure)
-console.log("Preço de venda será de: R$ " + venda_pure)
+console.log("Preço de venda será de: R$ " + venda_pure+ "\n")
+
+console.log("CACHORRO QUENTE CREMOSO");
+console.log("Ingredientes: pão, purê de batata, bacon, salsicha");
+console.log("Preço de custo será de: R$ " + custo_cremoso)
+console.log("Preço de venda será de: R$ " + venda_cremoso+ "\n")
+
+console.log("CACHORRO QUENTE ESPECIAL");
+console.log("Ingredientes: pão, purê de batata, bacon, salsicha");
+console.log("Preço de custo será de: R$ " + custo_especial)
+console.log("Preço de venda será de: R$ " + venda_especial+ "\n")
+
+console.log("COMBO CACHORROS QUENTES");
+console.log("Ingredientes: pão, purê de batata, bacon, salsicha");
+console.log("Preço de custo será de: R$ " + custo_combo)
+console.log("Preço de venda será de: R$ " + venda_combo+ "\n")
+
+console.log("A porcentagem utilizada para obter lucro foi de: " +porcentagem_digitada + "%")
+
+
+
+
+
+
+
+
+
+
+
 
