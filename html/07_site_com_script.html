@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML com Script</title>
+</head>
+<body style ="text-align:center; background-color: goldenrod">
+
+    <h1>HTML com Script</h1>
+    <p>Aplicando programação dentro do HTML</p>
+    <button onclick="mostrarMensagem()" >Ver mensagens</button>
+
+    <hr/>
+
+    <p>Clicar in the botão</p>
+    <button onclick="contagemInsane_de_clicks()">Clica em mim por favor</button>
+
+    <script> /* Para criar as funções, não importa a ordem que as coloco dentro do script, por que elas só funcionam quando são chamadas por algo */
+        
+        function mostrarMensagem(){
+            console.log("Olá Mundo!")
+            console.log("Misturando HTML com Javascript")
+            /* (alert) Cria uma notificação de alerta no site quando clicar no botão, (prompt) cria uma caixa de texto para responder a mensagem */
+            let resposta = prompt("R-roi, bão?")
+
+            if(resposta == "não"){
+                alert("Ah ;( ")
+            } else {
+                alert("Ai sim padrin")
+            }
+        }
+
+        let clicks = 0 
+        
+        function contagemInsane_de_clicks(){
+            clicks = clicks + 1
+            alert("Você clicou "+clicks+" vezes!")
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
