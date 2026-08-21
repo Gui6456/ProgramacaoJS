@@ -8,3 +8,4 @@ if (numero1 > numero2 ) {
     console.log("O maior número é o: " +numero1)
 } else if (numero2 > numero1) {
     console.log("O maior número é o: " +numero2)
+}
