@@ -16,8 +16,10 @@ item2 = parseFloat(prompt("Digite o preço do " + item2 + ": R$"))
 item3 = parseFloat(prompt("Digite o preço do " + item3 + ": R$"))
 item4 = parseFloat(prompt("Digite o preço do " + item4 + ": R$"))
 item5 = parseFloat(prompt("Digite o preço do " + item5 + ": R$"))
+console.log("")
 
 let porcentagem_usuario = parseInt(prompt("Digite a porcentagem de lucro desejado: "));
+console.log("")
 let lucro_desejado = porcentagem_usuario / 100;
 
 console.log("==============================================")
