@@ -7,11 +7,7 @@ console.log("Peso: " +peso+ "kg")
 let altura = parseFloat(prompt("Qual a sua altura?: "))
 console.log("Peso: " +altura+ "m")
 
-let imc = (peso / [altura^2])
-
-if (imc < 18.5) {
-    console.log ("Você está a abaixo do peso ideial!")
-    
+let imc = (peso / (altura * altura))
 } else if (imc >= 18.5 && imc <= 24.9  ){   // Essa combinação faz com que, um valor maior ou igual de 18.5 && (e) imc menor ou igual 24.9 é um resultado.
     console.log ("Você está no peso ideal!")
 }
