@@ -16,6 +16,9 @@
     <p>Clicar in the botão</p>
     <button onclick="contagemInsane_de_clicks()">Clica em mim por favor</button>
 
+    let clicks = 0
+    let cookies_moedas = 0  
+
     <script> /* Para criar as funções, não importa a ordem que as coloco dentro do script, por que elas só funcionam quando são chamadas por algo */
         
         function mostrarMensagem(){
@@ -26,45 +29,22 @@
 
             if(resposta == "não"){
                 alert("Ah ;( ")
-            } else {
+            } else 
                 alert("Ai sim padrin")
             }
-        }
-
-        let clicks = 0 
-
+        
         function contagemInsane_de_clicks(){
-            clicks = clicks + 1
+            clicks = clicks +  1
 
             if (clicks > 10){
                 alert("Para pelo amor de deus cara")
             } else {
                 alert("Você clicou "+clicks+" vezes!")
             }
-            
-              
+                 
         }
 
-
-
-
-
-
-
-
-
-
-
     </script>
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
