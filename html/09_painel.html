@@ -1,0 +1,101 @@
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel</title>
+</head>
+
+<body>
+
+    
+<div id="painel_login" style="display: block;" >
+
+    <h1 style="color:blue; background-color: aqua; font-size: 60px;"> Login </h1>
+
+    <form>
+        <p>Digite seu usuário:</p>
+        <input id = "input_usuario" />
+
+        <p>Digite sua senha:</p>
+        <input id = "input_senha" type="password" />
+
+        <br /><br />
+
+        <button type="button" onclick="autenticar()"> Entrar </button> <br/>
+
+        <p>Jogue nosso jogo incrível! <a href="08_quero_cookies.html" > <button type="button" > JOGAR </button> </a> </p> 
+
+        <hr/>
+    </form>   
+
+</div>
+
+<div id="painel_adm" style="display: none;">
+        
+    <h1>Painel administrativo</h1>
+    <p>Você está logado como <strong>administrador</strong></p>
+    <button onclick="logout()" > Sair da conta </button>
+
+</div>
+
+    <script>
+
+        verifica_login()
+
+        function verifica_login(){   // Essa função precisa ser chamada assim que o usuário entrar no site
+            let autenticado = localStorage.getItem("autenticado")
+
+            if (autenticado == 1){
+            document.getElementById("painel_adm").style.display = "block";  
+            document.getElementById("painel_login").style.display = "none";
+            } 
+
+        }
+
+        function autenticar() {   // O correto é autenticar, já que é necessário saber se a pessoa que está logando é autêntica, e é o dono das informações
+            
+            // Aqui eu busco e substituo o valor das variáveis com os valores dos inputs
+            let usuario = document.getElementById("input_usuario").value  // O value pega o que está dentro do input, o seu "valor/resultado"
+            let senha = document.getElementById("input_senha").value
+            
+            if (usuario.length < 3 ){  // usuario.lenght, significa que, a variável usuário.LENGTH, o . faz que a variável tenha um atributo, nesse caso o tamanho
+                alert("Errou...")
+                return  // Esse comando cancela a função e não a deixa continuar     
+            } 
+
+            if (senha.length == 0 ){  // É interessante deixar == 0 para deixar mais difícil a vida de hackers
+                alert("Vai de novo...")
+                return    
+            } 
+
+            if (usuario !="administrador"){
+                alert("Usuário incorreto!")
+                return
+            }
+
+            if (senha !="123123"){
+                alert("Senha incorreto!")
+                return
+            }
+
+            // O localStorage armazena dados dentro do site, que são eternos até serem excluidos, aqui estou criando um item com o set, o seu nome é "autenticado" e o valor é 1(sim) ou 0(não) sendo binário
+            localStorage.setItem("autenticado", 1)  
+
+            // Aqui é apenas para alternar a visualização dos paineis(oculto e visível)
+            document.getElementById("painel_adm").style.display = "block";  // Por padrão do HTML, os elementos já são atribuidos com o display = "block"
+            document.getElementById("painel_login").style.display = "none";  // Faz os elementos desaparecerem com o display = "none"    
+        }
+
+        function logout() {
+
+            localStorage.removeItem("autenticado")
+
+            document.getElementById("painel_adm").style.display = "none";
+            document.getElementById("painel_login").style.display = "block"; 
+        }
+    </script>
+
+</body>
+
+</html>

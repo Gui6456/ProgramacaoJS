@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cookie Clicker da Shoppie</title>
 </head>
 <body>
 
@@ -20,21 +20,44 @@
     <hr/>
 
     <ul>
-        <li> Gotas de chocolate - 🍪<strong id="contagemGotas" > 25 </strong> <button onclick="carrinhoGotas()" > BUFF </button> </li>  
+        <li> Gotas de chocolate - 🍪<strong id="contagemGotas" > 50 </strong> <button onclick="carrinhoGotas()" > BUFF </button> </li>  
         
         <li> Duplo ou Triplo chocolate - 🍪<strong id="contagemDuplo" > 1000 </strong> <button onclick="carrinhoDuplo()" > BUFF </button> </li>                                     
         
         <li> Chocolate com nozes - 🍪<strong id="contagemNozes" > 50000 </strong> <button onclick="carrinhoNozes()" > BUFF </button> </li>
     </ul>
 
+    <p><i>Entre um uma conta para ganhar</i> 🍪 <strong>1.000</strong> <button onclick="resgatar_recompensa()" >Resgatar recompensa </button> </p>
+
+    <p>Para logar e não perder essa oportunidade incrível! <a href="09_painel.html" > <button> LOGAR </button> </p> </a>
+
     <script>  
     
     let cookies_moedas = 0  
     let cookie_por_click = 1
-    let contagem_gotas = 25
+    let contagem_gotas = 50
     let contagem_duplo = 1000
     let contagem_nozes = 50000  
     
+        // Busco no armazem local do site o item autenticado do outro site, já que estão na mesma raiz, a recomepnsa é de 1000 cookies, e atualiza o valor no HTML
+        // Se criar um comando para remover o login após o resgate, não funciona pois é só logar novamente
+        function resgatar_recompensa(){
+            
+            if (localStorage.getItem("recompensa_ja_coletada") == 1){
+                alert("Recompensa já foi resgatada...")
+                return
+            }
+
+            if (localStorage.getItem("autenticado") == 1){
+                cookies_moedas += 1000
+                localStorage.setItem("recompensa_ja_coletada","1")
+                alert("Recompensa ganha!")   
+                document.getElementById("textoDinheiro").innerHTML = cookies_moedas
+            } else {
+                alert("Você deve fazer login para continuar...")
+            }
+        }
+
         function queroCookies(){ // Ou seja, ao inves de colocar esse variável ser 1 (cookies_moedas) e somar 1+1+1, faço com que o valor que o queroCookies se tornar, entre nessa soma, aumentando o valor por click 
             
             cookies_moedas += cookie_por_click  //Também funciona como um sistema de contagem de variáveis, também existe o -= para retirar valores, sendo uma forma curta de escrever. 
@@ -46,11 +69,11 @@
             if(cookies_moedas < contagem_gotas){
                 alert("Farme mais cookies!")
             }else {
-                cookie_por_click += 1 // Dá +1 de bônus
+                cookie_por_click += 3 // Dá +1 de bônus
                 document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_gotas 
                 document.getElementById("textoDinheiro").innerHTML = cookies_moedas
-                contagem_gotas += parseInt (contagem_gotas * 1.30 )
+                contagem_gotas += parseInt (contagem_gotas * 0.30 )
                 document.getElementById("contagemGotas").innerHTML = contagem_gotas
             }
         }
@@ -64,7 +87,7 @@
                 document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_duplo  
                 document.getElementById("textoDinheiro").innerHTML = cookies_moedas
-                contagem_duplo += parseInt (contagem_duplo * 1.30 )
+                contagem_duplo += parseInt (contagem_duplo * 0.30 )
                 document.getElementById("contagemDuplo").innerHTML = contagem_duplo
             }
         }
@@ -78,7 +101,7 @@
                 document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_nozes  
                 document.getElementById("textoDinheiro").innerHTML = cookies_moedas
-                contagem_nozes += parseInt (contagem_nozes * 1.30 )
+                contagem_nozes += parseInt (contagem_nozes * 0.30 )
                 document.getElementById("contagemNozes").innerHTML = contagem_nozes
             }
         }
