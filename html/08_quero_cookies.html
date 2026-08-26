@@ -33,12 +33,30 @@
 
     <script>  
     
-    let cookies_moedas = 0  
-    let cookie_por_click = 1
-    let contagem_gotas = 50
-    let contagem_duplo = 1000
-    let contagem_nozes = 50000  
+    let cookies_moedas = parseInt(localStorage.getItem("textoDinheiro")) || 0
+    let cookie_por_click = parseInt(localStorage.getItem("cookie_por_click")) || 1
+    let contagem_gotas = parseInt(localStorage.getItem("contagem_gotas")) || 50
+    let contagem_duplo = parseInt(localStorage.getItem("contagem_duplo")) || 1000
+    let contagem_nozes = parseInt(localStorage.getItem("contagem_nozes")) || 50000  
     
+        atualizar_tela()
+
+        function queroCookies(){ // Ou seja, ao inves de colocar esse variável ser 1 (cookies_moedas) e somar 1+1+1, faço com que o valor que o queroCookies se tornar, entre nessa soma, aumentando o valor por click 
+            
+            cookies_moedas += cookie_por_click  //Também funciona como um sistema de contagem de variáveis, também existe o -= para retirar valores, sendo uma forma curta de escrever.   
+            atualizar_tela()
+            salvar_progresso()
+            document.getElementById("textoDinheiro").innerHTML = cookies_moedas  // Esse comando faz exatamente o que diz fazer, ele busca um id nesse html e substitue para o valor que eu quiser.
+        }
+
+        function salvar_progresso(){
+            localStorage.setItem("textoDinheiro", cookies_moedas)
+        }
+
+        function atualizar_tela(){
+            document.getElementById("textoDinheiro").innerHTML = cookies_moedas
+        }
+
         // Busco no armazem local do site o item autenticado do outro site, já que estão na mesma raiz, a recomepnsa é de 1000 cookies, e atualiza o valor no HTML
         // Se criar um comando para remover o login após o resgate, não funciona pois é só logar novamente
         function resgatar_recompensa(){
@@ -58,11 +76,7 @@
             }
         }
 
-        function queroCookies(){ // Ou seja, ao inves de colocar esse variável ser 1 (cookies_moedas) e somar 1+1+1, faço com que o valor que o queroCookies se tornar, entre nessa soma, aumentando o valor por click 
-            
-            cookies_moedas += cookie_por_click  //Também funciona como um sistema de contagem de variáveis, também existe o -= para retirar valores, sendo uma forma curta de escrever. 
-            document.getElementById("textoDinheiro").innerHTML = cookies_moedas  // Esse comando faz exatamente o que diz fazer, ele busca um id nesse html e substitue para o valor que eu quiser.
-        }
+        
 
         // Função do 1º botão (Gotas)
         function carrinhoGotas(){
