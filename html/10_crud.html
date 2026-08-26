@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo o CRUD</title>
+</head>
+<body>
+    
+    <h1>CRUD</h1>
+    
+    <p> Create (criar/inserir) </p>
+    <p> Read (ler/buscar) </p>
+    <p> Update (alterar) </p>
+    <p> Delete (remover) </p>
+    
+    <hr/> <!--esse Crud será para usuários-->
+
+    <input id="input_nome" placeholder="Digite um nome" />   <!--o placeholder no input serve para colocar esse "" dentro do input-->
+    <button onclick="create_inserir()" > Salvar </button>
+
+    <ul id="lista_usuarios" >
+
+    </ul>
+
+    <script>
+
+        // Dados mockados (Mock), são dados falsos ou simulados, criados propositalmente para substituir dados reais em testes
+        let nomes = ["Conrado", "Rafael", "Caio", "Matheus", "Guilherme"]    // Serve para colocar diversas variáveis em um lugar só, o nome especifico para listas é *Array*
+
+        read_all()
+
+        function create_inserir(){   
+
+            let nome = document.getElementById("input_nome").value
+            
+            if (nome.length <= 3){
+                alert("Coloca certo ai mano")
+                return
+            }  
+            
+            nomes = nomes.concat(nome)  // concat só funciona com Arrays(listas), ele serve para concatenar valores na lista e adicioná-los 
+            read_all()  // Ou seja, após criar uma variável com o valor do input, o nomes anterior é modificado por ele mesmo e concatenado em novos nomes na lista, após isso ocorre a função do read_all
+            document.getElementById("input_nome").value = "" // Ou seja após o valor do campo ser enviado e lido, ele vai ser substituido por "" = vazio
+        }
+
+        // Caso eu queira enxergar o Array, usar o console.log
+        // Para eu ver uma posição especifica do Array, começa no [0] , [1] , [2] , [3] , etc
+        // Será feito um processo automático dos nomes, esse método só funciona com Arrays(listas)
+        function read_all(){  
+
+            let lista_html = ""  // Aqui os dados só são pegos da variável, e usados logo abaixo
+            nomes.map( i => lista_html += "<li> " +i+ " <button> 🖊 </button> <button> 🗑 </button> </li>" )   // O map funciona como um buscador de items em que, ele pega um item, coloca na variável responsável, pega outro item e repete. (variável i = item)
+            document.getElementById("lista_usuarios").innerHTML = lista_html
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
