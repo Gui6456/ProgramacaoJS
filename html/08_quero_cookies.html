@@ -76,14 +76,12 @@
             }
         }
 
-        
-
         // Função do 1º botão (Gotas)
         function carrinhoGotas(){
             if(cookies_moedas < contagem_gotas){
                 alert("Farme mais cookies!")
             }else {
-                cookie_por_click += 3 // Dá +1 de bônus
+                cookie_por_click += 3 // Dá +3 de bônus
                 document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_gotas 
                 document.getElementById("textoDinheiro").innerHTML = cookies_moedas
