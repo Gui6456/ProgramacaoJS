@@ -34,7 +34,7 @@
         let nomes = ["Conrado", "Rafael", "Caio", "Matheus", "Guilherme"]    // Serve para colocar diversas variáveis em um lugar só, o nome especifico para listas é *Array*
         let posicao_alteracao = 0 
 
-        read_all_alteracoes()
+        read_buscar()
 
         function delete_remover(nome){  // Splice é responsável por remover items da lista e pede uma posição e quantas casas ele vai remover, 1 = um nome, 2 = dois nomes
 
@@ -45,7 +45,7 @@
 
             let posicao_remocao = nomes.indexOf(nome)  // Na lista de nomes ele encontra a posição de um nome
             nomes.splice(posicao_alteracao, 1)
-            read_all_alteracoes()
+            read_buscar()
         }
         
         function create_inserir(){   // Essa função cria nomes novos e os coloca na lista
@@ -58,7 +58,7 @@
             }  
 
             nomes[nomes.length] = nome
-            read_all_alteracoes()  
+            read_buscar()  
             document.getElementById("input_nome").value = "" // Ou seja após o valor do campo ser enviado e lido, ele vai ser substituido por "" = vazio
         }
 
@@ -68,7 +68,7 @@
 
             nomes[posicao_alteracao] = nome
 
-            read_all_alteracoes()
+            read_buscar()
 
             document.getElementById("input_nome").value = ""
             document.getElementById("botao_salvar").style.display = "inline-block"
@@ -85,7 +85,7 @@
             document.getElementById("botao_alterar").style.display = "inline-block"
         }
         
-        function read_all_alteracoes(){  // Essa função mostra a lista dessa forma
+        function read_buscar(){  // Essa função mostra a lista dessa forma
 
             // O map funciona como um buscador de items em que, ele pega um item, coloca na variável responsável, pega outro item e repete. (variável i = item)
             // Aqui os dados só são pegos da variável, e usados logo abaixo
