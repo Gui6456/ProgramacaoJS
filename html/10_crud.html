@@ -6,6 +6,10 @@
     <title>Aprendendo o CRUD</title>
 </head>
 <body>
+
+    <!--Caso eu queira enxergar o Array, usar o console.log--> 
+    <!--Para eu ver uma posição especifica do Array, começa no [0] , [1] , [2] , [3] , etc--> 
+    <!--Será feito um processo automático dos nomes, esse método só funciona com Arrays(listas)-->
     
     <h1>CRUD</h1>
     
@@ -17,7 +21,8 @@
     <hr/> <!--esse Crud será para usuários-->
 
     <input id="input_nome" placeholder="Digite um nome" />   <!--o placeholder no input serve para colocar esse "" dentro do input-->
-    <button onclick="create_inserir()" > Salvar </button>
+    <button id="botao_salvar" onclick="create_inserir()" > Salvar </button>
+    <button id="botao_alterar" style = "display: none;" onclick="save_alteracoes()" > Salvar Alterações </button>
 
     <ul id="lista_usuarios" >
 
@@ -27,44 +32,71 @@
 
         // Dados mockados (Mock), são dados falsos ou simulados, criados propositalmente para substituir dados reais em testes
         let nomes = ["Conrado", "Rafael", "Caio", "Matheus", "Guilherme"]    // Serve para colocar diversas variáveis em um lugar só, o nome especifico para listas é *Array*
+        let posicao_alteracao = 0 
 
-        read_all()
+        read_all_alteracoes()
 
-        function create_inserir(){   
+        function delete_remover(nome){  // Splice é responsável por remover items da lista e pede uma posição e quantas casas ele vai remover, 1 = um nome, 2 = dois nomes
 
-            let nome = document.getElementById("input_nome").value
-            
+            let resposta = confirm("Tem certeza que deseja remover?")
+            if (resposta == false ){
+                return
+            }
+
+            let posicao_remocao = nomes.indexOf(nome)  // Na lista de nomes ele encontra a posição de um nome
+            nomes.splice(posicao_alteracao, 1)
+            read_all_alteracoes()
+        }
+        
+        function create_inserir(){   // Essa função cria nomes novos e os coloca na lista
+        
+        let nome = document.getElementById("input_nome").value
+        
             if (nome.length <= 3){
                 alert("Coloca certo ai mano")
                 return
             }  
-            
-            nomes = nomes.concat(nome)  // concat só funciona com Arrays(listas), ele serve para concatenar valores na lista e adicioná-los 
-            read_all()  // Ou seja, após criar uma variável com o valor do input, o nomes anterior é modificado por ele mesmo e concatenado em novos nomes na lista, após isso ocorre a função do read_all
+
+            nomes[nomes.length] = nome
+            read_all_alteracoes()  
             document.getElementById("input_nome").value = "" // Ou seja após o valor do campo ser enviado e lido, ele vai ser substituido por "" = vazio
         }
 
-        // Caso eu queira enxergar o Array, usar o console.log
-        // Para eu ver uma posição especifica do Array, começa no [0] , [1] , [2] , [3] , etc
-        // Será feito um processo automático dos nomes, esse método só funciona com Arrays(listas)
-        function read_all(){  
+        function save_alteracoes(){  // Essa função salva as alterações nos nomes
 
-            let lista_html = ""  // Aqui os dados só são pegos da variável, e usados logo abaixo
-            nomes.map( i => lista_html += "<li> " +i+ " <button> 🖊 </button> <button> 🗑 </button> </li>" )   // O map funciona como um buscador de items em que, ele pega um item, coloca na variável responsável, pega outro item e repete. (variável i = item)
+            let nome = document.getElementById("input_nome").value
+
+            nomes[posicao_alteracao] = nome
+
+            read_all_alteracoes()
+
+            document.getElementById("input_nome").value = ""
+            document.getElementById("botao_salvar").style.display = "inline-block"
+            document.getElementById("botao_alterar").style.display = "none"
+        }
+
+        function update_atualizar(nome){   // Essa função será colocada no "Lápis" para modificar os nomes
+
+            // O indexOf é, o índice de algo, ou seja, o índice dos nomes nesse caso/sua posição
+            posicao_alteracao = nomes.indexOf(nome)
+
+            document.getElementById("input_nome").value = nome
+            document.getElementById("botao_salvar").style.display = "none"
+            document.getElementById("botao_alterar").style.display = "inline-block"
+        }
+        
+        function read_all_alteracoes(){  // Essa função mostra a lista dessa forma
+
+            // O map funciona como um buscador de items em que, ele pega um item, coloca na variável responsável, pega outro item e repete. (variável i = item)
+            // Aqui os dados só são pegos da variável, e usados logo abaixo
+            let lista_html = ""  // Para fazer o lápis alterar os nomes, onclick na nova função e adicionar o parâmetro da variável "i" que contem os nomes
+            nomes.map( i => lista_html += `<li> ${i} <button onclick = "update_atualizar('${i}')" > 🖊 </button>
+            <button onclick = "delete_remover('${i}')" > 🗑 </button> </li>` )   
+            
             document.getElementById("lista_usuarios").innerHTML = lista_html
         }
 
-
-
-
-
-
-
-
-
-
-
-
+        
     </script>
 
 
