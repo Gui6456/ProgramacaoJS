@@ -33,8 +33,3 @@ function numero_positivo(){
 
     console.log(`O número ${n1} é ${resposta}!`)
 }
-
-
-
-
-
