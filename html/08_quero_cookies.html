@@ -46,10 +46,10 @@
             cookies_moedas += cookie_por_click  //Também funciona como um sistema de contagem de variáveis, também existe o -= para retirar valores, sendo uma forma curta de escrever.   
             atualizar_tela()
             salvar_progresso()
-            document.getElementById("textoDinheiro").innerHTML = cookies_moedas  // Esse comando faz exatamente o que diz fazer, ele busca um id nesse html e substitue para o valor que eu quiser.
         }
 
         function salvar_progresso(){
+
             localStorage.setItem("textoDinheiro", cookies_moedas)
             localStorage.setItem("cookie_por_click", cookie_por_click)
             localStorage.setItem("contagem_gotas", contagem_gotas)
@@ -59,11 +59,11 @@
 
         function atualizar_tela(){
 
-        document.getElementById("textoDinheiro").innerHTML = cookies_moedas
-        document.getElementById("textoBonus").innerHTML = cookie_por_click
-        document.getElementById("contagemGotas").innerHTML = contagem_gotas
-        document.getElementById("contagemDuplo").innerHTML = contagem_duplo
-        document.getElementById("contagemNozes").innerHTML = contagem_nozes
+            document.getElementById("textoDinheiro").innerHTML = cookies_moedas
+            document.getElementById("textoBonus").innerHTML = cookie_por_click
+            document.getElementById("contagemGotas").innerHTML = contagem_gotas
+            document.getElementById("contagemDuplo").innerHTML = contagem_duplo
+            document.getElementById("contagemNozes").innerHTML = contagem_nozes
         }
 
         // Busco no armazem local do site o item autenticado do outro site, já que estão na mesma raiz, a recomepnsa é de 1000 cookies, e atualiza o valor no HTML
@@ -71,17 +71,18 @@
         function resgatar_recompensa(){
             
             if (localStorage.getItem("recompensa_ja_coletada") == 1){
+
                 alert("Recompensa já foi resgatada...")
                 return
             }
 
             if (localStorage.getItem("autenticado") == 1){
+
                 cookies_moedas += 1000
                 localStorage.setItem("recompensa_ja_coletada","1")
                 salvar_progresso()
                 alert("Recompensa ganha!")
                 atualizar_tela()   
-                document.getElementById("textoDinheiro").innerHTML = cookies_moedas
             } else {
                 alert("Você deve fazer login para continuar...")
             }
@@ -90,16 +91,13 @@
 
         // Função do 1º botão (Gotas)
         function carrinhoGotas(){
+
             if(cookies_moedas < contagem_gotas){
                 alert("Farme mais cookies!")
             }else {
                 cookie_por_click += 3 // Dá +3 de bônus
-                document.getElementById("textoBonus").innerHTML = cookie_por_click
-                cookies_moedas -= contagem_gotas 
-                document.getElementById("textoDinheiro").innerHTML = cookies_moedas
+                cookies_moedas -= contagem_gotas
                 contagem_gotas += parseInt (contagem_gotas * 0.30 )
-                document.getElementById("contagemGotas").innerHTML = contagem_gotas
-
                 atualizar_tela()
                 salvar_progresso()
             }
@@ -107,16 +105,13 @@
 
         // Função do 2º botão (Duplo ou Triplo)
         function carrinhoDuplo(){
+
             if(cookies_moedas < contagem_duplo){
                 alert("Farme mais cookies!")
             }else {
                 cookie_por_click += 10 // Dá +10 de bônus (você pode mudar depois)
-                document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_duplo  
-                document.getElementById("textoDinheiro").innerHTML = cookies_moedas
                 contagem_duplo += parseInt (contagem_duplo * 0.30 )
-                document.getElementById("contagemDuplo").innerHTML = contagem_duplo
-
                 atualizar_tela()
                 salvar_progresso()
             }
@@ -124,16 +119,13 @@
 
         // Função do 3º botão (Nozes)
         function carrinhoNozes(){
+            
             if(cookies_moedas < contagem_nozes){
                 alert("Farme mais cookies!")
             }else {
                 cookie_por_click += 100 // Dá +100 de bônus (você pode mudar depois)
-                document.getElementById("textoBonus").innerHTML = cookie_por_click
                 cookies_moedas -= contagem_nozes  
-                document.getElementById("textoDinheiro").innerHTML = cookies_moedas
                 contagem_nozes += parseInt (contagem_nozes * 0.30 )
-                document.getElementById("contagemNozes").innerHTML = contagem_nozes
-
                 atualizar_tela()
                 salvar_progresso()
             }
