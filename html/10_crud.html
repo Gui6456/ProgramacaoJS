@@ -21,8 +21,9 @@
     <hr/> <!--esse Crud será para usuários-->
 
     <input id="input_nome" placeholder="Digite um nome" />   <!--o placeholder no input serve para colocar esse "" dentro do input-->
-    <button id="botao_salvar" onclick="create_inserir()" > Salvar </button>
-    <button id="botao_alterar" style = "display: none;" onclick="save_alteracoes()" > Salvar Alterações </button>
+    <button id="botao_salvar" onclick="salvar(1)" > Salvar </button>
+    <button id="botao_alterar" style = "display: none;" onclick="salvar(0)" > Salvar Alterações </button>
+    <button id="botao_cancelar" style="display: none;" onclick="cancelar_edicao()" > Cancelar</button>
 
     <ul id="lista_usuarios" >
 
@@ -32,7 +33,7 @@
 
         // Dados mockados (Mock), são dados falsos ou simulados, criados propositalmente para substituir dados reais em testes
         let nomes = ["Conrado", "Rafael", "Caio", "Matheus", "Guilherme"]    // Serve para colocar diversas variáveis em um lugar só, o nome especifico para listas é *Array*
-        let posicao_alteracao = 0 
+        let posicao_remocao = 0 
 
         read_buscar()
 
@@ -44,45 +45,60 @@
             }
 
             let posicao_remocao = nomes.indexOf(nome)  // Na lista de nomes ele encontra a posição de um nome
-            nomes.splice(posicao_alteracao, 1)
+            nomes.splice(posicao_remocao, 1)
             read_buscar()
         }
         
-        function create_inserir(){   // Essa função cria nomes novos e os coloca na lista
-        
-        let nome = document.getElementById("input_nome").value
-        
+        function salvar(esta_inserido){ // É responsável por selecionar o input, coloca um limite minimo, e se caso o usuario clicar no salvar, ativa o inserir, se não, o botão alterar e o cancelar
+                nome = document.getElementById("input_nome").value
+
             if (nome.length <= 3){
-                alert("Coloca certo ai mano")
+                alert("Coloca certo ai mano!")
                 return
-            }  
+            } 
 
-            nomes[nomes.length] = nome
-            read_buscar()  
-            document.getElementById("input_nome").value = "" // Ou seja após o valor do campo ser enviado e lido, ele vai ser substituido por "" = vazio
-        }
-
-        function save_alteracoes(){  // Essa função salva as alterações nos nomes
-
-            let nome = document.getElementById("input_nome").value
-
-            nomes[posicao_alteracao] = nome
+            if (esta_inserido == 1){
+                create_inserir(nome)
+            } else {
+                save_alteracoes(nome)
+                cancelar_edicao()
+            }
 
             read_buscar()
 
             document.getElementById("input_nome").value = ""
+
             document.getElementById("botao_salvar").style.display = "inline-block"
             document.getElementById("botao_alterar").style.display = "none"
+            document.getElementById("botao_cancelar").style.display = "none"
         }
 
-        function update_atualizar(nome){   // Essa função será colocada no "Lápis" para modificar os nomes
+        function cancelar_edicao(){  // Botão que cancela a alteração, aparece ao lado dele
+            document.getElementById("input_nome").value = ""
+
+            document.getElementById("botao_salvar").style.display = "inline-block"
+            document.getElementById("botao_alterar").style.display = "none"
+            document.getElementById("botao_cancelar").style.display = "none"
+        }
+
+        function create_inserir(nome){   // Essa função cria nomes novos e os coloca na lista
+                nomes=nomes.concat(nome)
+        }
+
+        function save_alteracoes(nome){  // Essa função salva as alterações nos nomes
+                nomes[posicao_remocao] = nome
+        }
+
+        function editar(nome){   // Essa função será colocada no "Lápis" para modificar os nomes
 
             // O indexOf é, o índice de algo, ou seja, o índice dos nomes nesse caso/sua posição
-            posicao_alteracao = nomes.indexOf(nome)
+            posicao_remocao = nomes.indexOf(nome)
 
             document.getElementById("input_nome").value = nome
+
             document.getElementById("botao_salvar").style.display = "none"
             document.getElementById("botao_alterar").style.display = "inline-block"
+            document.getElementById("botao_cancelar").style.display = "inline-block"
         }
         
         function read_buscar(){  // Essa função mostra a lista dessa forma
@@ -90,13 +106,11 @@
             // O map funciona como um buscador de items em que, ele pega um item, coloca na variável responsável, pega outro item e repete. (variável i = item)
             // Aqui os dados só são pegos da variável, e usados logo abaixo
             let lista_html = ""  // Para fazer o lápis alterar os nomes, onclick na nova função e adicionar o parâmetro da variável "i" que contem os nomes
-            nomes.map( i => lista_html += `<li> ${i} <button onclick = "update_atualizar('${i}')" > 🖊 </button>
+            nomes.map( i => lista_html += `<li> ${i} <button onclick = "editar('${i}')" > 🖊 </button>
             <button onclick = "delete_remover('${i}')" > 🗑 </button> </li>` )   
             
             document.getElementById("lista_usuarios").innerHTML = lista_html
         }
-
-        
     </script>
 
 
