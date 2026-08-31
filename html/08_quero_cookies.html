@@ -12,7 +12,7 @@
 
     <p>Clique no 🍪Cookie para fabricar:</p>
 
-    <img src="../imagens_fodas_backgrounds/cookie.jpg" width="220px" height="250px" onclick="queroCookies()">  
+    <img src="../imagens_fodas_backgrounds/cookie.jpg" width="220px" height="250px" onclick="contagem_cookies()">  
     <!--Isso é necessário para acessar outras pastas em caminhos diferentes, o ../ fiz para ele ir algumas pastas atras, acessar essa pasta e pegar esse arquivo-->
     
     <p><i>Cookies por clique:</i> 🍪<strong id="textoBonus">1</strong></p> 
@@ -41,7 +41,7 @@
     
         atualizar_tela()
 
-        function queroCookies(){ // Ou seja, ao inves de colocar esse variável ser 1 (cookies_moedas) e somar 1+1+1, faço com que o valor que o queroCookies se tornar, entre nessa soma, aumentando o valor por click 
+        function contagem_cookies(){ // Ou seja, ao inves de colocar esse variável ser 1 (cookies_moedas) e somar 1+1+1, faço com que o valor que o contagem_cookies se tornar, entre nessa soma, aumentando o valor por click 
             
             cookies_moedas += cookie_por_click  //Também funciona como um sistema de contagem de variáveis, também existe o -= para retirar valores, sendo uma forma curta de escrever.   
             atualizar_tela()
